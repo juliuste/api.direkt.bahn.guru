@@ -1,0 +1,45 @@
+{
+	"name": "direkt.bahn.guru-rest",
+	"private": true,
+	"version": "0.0.0",
+	"homepage": "https://github.com/juliuste/direkt.bahn.guru-rest",
+	"bugs": "https://github.com/juliuste/direkt.bahn.guru-rest/issues",
+	"repository": "juliuste/direkt.bahn.guru-rest",
+	"license": "ISC",
+	"author": "Julius Tens <mail@juliustens.eu>",
+	"scripts": {
+		"check-deps": "depcheck",
+		"deploy": "./deploy",
+		"fix": "eslint --fix lib",
+		"lint": "eslint lib",
+		"start": "forever start --uid direkt.bahn.guru-rest -a lib/index.js",
+		"stop": "forever stop direkt.bahn.guru-rest",
+		"test": "npm run lint && npm run check-deps"
+	},
+	"dependencies": {
+		"apicache": "^1.2.3",
+		"compression": "^1.7.2",
+		"corser": "^2.0.1",
+		"express": "^4.16.3",
+		"hafas-client": "github:juliuste/hafas-client",
+		"is-uic-location-code": "0.0.1",
+		"lodash": "^4.17.11",
+		"moment-timezone": "^0.5.23",
+		"p-queue": "^3.0.0"
+	},
+	"devDependencies": {
+		"depcheck": "^0.6.11",
+		"eslint": "^5.10.0",
+		"eslint-config-standard": "^12.0.0",
+		"eslint-plugin-import": "^2.14.0",
+		"eslint-plugin-node": "^8.0.0",
+		"eslint-plugin-promise": "^4.0.1",
+		"eslint-plugin-standard": "^4.0.0"
+	},
+	"peerDependencies": {
+		"forever": "^0.15"
+	},
+	"engines": {
+		"node": ">=8"
+	}
+}
