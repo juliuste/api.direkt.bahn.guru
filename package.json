@@ -9,11 +9,8 @@
 	"author": "Julius Tens <mail@juliustens.eu>",
 	"scripts": {
 		"check-deps": "depcheck",
-		"deploy": "./deploy",
 		"fix": "eslint --fix lib",
 		"lint": "eslint lib",
-		"start": "forever start --uid direkt.bahn.guru-rest -a lib/index.js",
-		"stop": "forever stop direkt.bahn.guru-rest",
 		"test": "npm run lint && npm run check-deps"
 	},
 	"dependencies": {
