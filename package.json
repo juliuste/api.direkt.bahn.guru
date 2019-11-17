@@ -19,6 +19,7 @@
 		"boolean": "^3.0.0",
 		"compression": "^1.7.4",
 		"corser": "^2.0.1",
+		"db-clean-station-name": "^1.2.0",
 		"db-hafas": "^4.0.0",
 		"express": "^4.17.1",
 		"is-uic-location-code": "0.0.1",
