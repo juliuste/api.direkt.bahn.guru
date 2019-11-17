@@ -16,6 +16,7 @@
 	},
 	"dependencies": {
 		"apicache": "^1.5.2",
+		"boolean": "^3.0.0",
 		"compression": "^1.7.4",
 		"corser": "^2.0.1",
 		"db-hafas": "^4.0.0",
