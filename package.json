@@ -17,15 +17,15 @@
 		"test": "npm run lint && npm run check-deps"
 	},
 	"dependencies": {
-		"apicache": "^1.2.3",
-		"compression": "^1.7.2",
+		"apicache": "^1.5.2",
+		"compression": "^1.7.4",
 		"corser": "^2.0.1",
-		"express": "^4.16.3",
+		"express": "^4.17.1",
 		"hafas-client": "github:juliuste/hafas-client",
 		"is-uic-location-code": "0.0.1",
-		"lodash": "^4.17.11",
-		"moment-timezone": "^0.5.23",
-		"p-queue": "^3.0.0"
+		"lodash": "^4.17.15",
+		"moment-timezone": "^0.5.27",
+		"p-queue": "^6.2.1"
 	},
 	"devDependencies": {
 		"depcheck": "^0.6.11",
@@ -35,9 +35,6 @@
 		"eslint-plugin-node": "^8.0.0",
 		"eslint-plugin-promise": "^4.0.1",
 		"eslint-plugin-standard": "^4.0.0"
-	},
-	"peerDependencies": {
-		"forever": "^0.15"
 	},
 	"engines": {
 		"node": ">=8"
