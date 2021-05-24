@@ -16,6 +16,10 @@ const err = (msg, code) => {
 const isTrainDeparture = departure =>
 	l.get(departure, 'line.mode') === 'train' && (departure.line.name || '').slice(0, 3).toLowerCase() !== 'bus'
 
+// todo: the data source seems to include some broken trains, which run for
+// several weeks. we filter these out using some practical upper limit
+const maximumDurationInHours = 210 // see also: https://en.wikipedia.org/wiki/Longest_train_services#Top_50_train_services,_by_distance
+
 const reachableForDay = async (date, stationId, allowLocalTrains) => {
 	const departures = await hafas.departures(stationId, {
 		when: date,
@@ -41,8 +45,8 @@ const reachableForDay = async (date, stationId, allowLocalTrains) => {
 		const { when, nextStopovers = [] } = departure
 		const passedStopovers = l.takeRightWhile(nextStopovers || [], x => ![stationId, undefined, null].includes(l.get(x, 'stop.id')))
 		return passedStopovers.map(s => {
-			let duration = (new Date(s.arrival) - new Date(when)) / (1000 * 60)
-			if (duration <= 0) duration = null
+			let duration = (+new Date(s.arrival) - (+new Date(when))) / (1000 * 60)
+			if (duration <= 0 || (duration / 60) > maximumDurationInHours) duration = null
 			return {
 				id: s.stop.id,
 				name: s.stop.name,
