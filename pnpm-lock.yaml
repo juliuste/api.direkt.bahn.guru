@@ -13,6 +13,7 @@ specifiers:
   eslint-plugin-node: ^11.1.0
   eslint-plugin-promise: ^5.1.0
   express: ^4.17.1
+  express-robots-txt: ^0.5.0
   is-uic-location-code: 0.0.1
   lodash: ^4.17.21
   moment-timezone: ^0.5.33
@@ -25,6 +26,7 @@ dependencies:
   corser: 2.0.1
   db-hafas: 4.0.1
   express: 4.17.1
+  express-robots-txt: 0.5.0_express@4.17.1
   is-uic-location-code: 0.0.1
   lodash: 4.17.21
   moment-timezone: 0.5.33
@@ -1027,6 +1029,14 @@ packages:
 
   /eventemitter3/4.0.7:
     resolution: {integrity: sha512-8guHBZCwKnFhYdHr2ysuRWErTwhoN2X8XELRlrRwpmfeY2jjuUN4taQMsULKUVo1K4DvZl+0pgfyoysHxvmvEw==}
+    dev: false
+
+  /express-robots-txt/0.5.0_express@4.17.1:
+    resolution: {integrity: sha512-ISyI++3Yy1lZ982/gQK3RVbghxe2R+/+VDQ8EWrmAmNncyD4VITJR9jYiSbvfxRSVqcGjKWndKkYbgY6fVFdOA==}
+    peerDependencies:
+      express: ^4.12.1
+    dependencies:
+      express: 4.17.1
     dev: false
 
   /express/4.17.1:

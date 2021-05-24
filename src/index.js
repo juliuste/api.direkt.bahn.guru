@@ -5,8 +5,12 @@ const http = require('http')
 const corser = require('corser')
 const compression = require('compression')
 const cache = require('apicache')
+const robots = require('express-robots-txt')
 
 const reachableFrom = require('./reachableFrom')
+
+const port = process.env.PORT
+if (!port) throw new Error('please provide a PORT environment variable')
 
 const api = express()
 const server = http.createServer(api)
@@ -15,9 +19,9 @@ const server = http.createServer(api)
 cache.options({ appendKey: () => 'v3' })
 api.use(cache.middleware('24 hours'))
 
-const allowed = corser.simpleResponseHeaders.concat(['Access-Control-Allow-Origin'])
-api.use(corser.create({ responseHeaders: allowed })) // CORS
+api.use(corser.create())
 api.use(compression())
+api.use(robots({ UserAgent: '*', Disallow: '/' }))
 
 api.get('/:id', reachableFrom)
 
@@ -27,7 +31,6 @@ api.use((err, req, res, next) => {
 	next()
 })
 
-const port = 3072 // @todo
 server.listen(port, error => {
 	if (error) {
 		console.error(error)
