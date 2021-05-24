@@ -10,8 +10,8 @@
 	"scripts": {
 		"check-deps": "depcheck",
 		"fix": "npm run lint -- --fix",
-		"lint": "eslint lib",
-		"start": "node lib/index",
+		"lint": "eslint src",
+		"start": "node src/index",
 		"test": "npm run lint && npm run check-deps"
 	},
 	"dependencies": {
