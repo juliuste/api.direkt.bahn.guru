@@ -1,0 +1,23 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: api-direkt-bahn-guru
+  namespace: juliuste
+spec:
+  selector:
+    matchLabels:
+      app: api-direkt-bahn-guru
+  replicas: 1
+  template:
+    metadata:
+      labels:
+        app: api-direkt-bahn-guru
+    spec:
+      containers:
+      - name: api-direkt-bahn-guru
+        image: <IMAGE>
+        env:
+        - name: PORT
+          value: "3000"
+        ports:
+        - containerPort: 3000
