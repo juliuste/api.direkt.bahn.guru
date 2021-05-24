@@ -2,7 +2,7 @@
 
 const express = require('express')
 const http = require('http')
-const corser = require('corser')
+const cors = require('cors')
 const compression = require('compression')
 const cache = require('apicache')
 const robots = require('express-robots-txt')
@@ -14,13 +14,13 @@ if (!port) throw new Error('please provide a PORT environment variable')
 
 const api = express()
 const server = http.createServer(api)
+api.use(cors())
 
 // enable caching
 // todo: use a global cache (redis?) here
 cache.options({ appendKey: () => 'v3' })
 api.use(cache.middleware('24 hours'))
 
-api.use(corser.create())
 api.use(compression())
 api.use(robots({ UserAgent: '*', Disallow: '/' }))
 

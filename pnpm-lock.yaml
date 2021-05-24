@@ -4,7 +4,7 @@ specifiers:
   apicache: ^1.6.2
   boolean: ^3.0.4
   compression: ^1.7.4
-  corser: ^2.0.1
+  cors: ^2.8.5
   db-hafas: ^4.0.1
   depcheck: ^1.4.1
   eslint: ^7.27.0
@@ -23,7 +23,7 @@ dependencies:
   apicache: 1.6.2
   boolean: 3.0.4
   compression: 1.7.4
-  corser: 2.0.1
+  cors: 2.8.5
   db-hafas: 4.0.1
   express: 4.17.1
   express-robots-txt: 0.5.0_express@4.17.1
@@ -579,9 +579,12 @@ packages:
     engines: {node: '>= 0.6'}
     dev: false
 
-  /corser/2.0.1:
-    resolution: {integrity: sha1-jtolLsqrWEDc2XXOuQ2TcMgZ/4c=}
-    engines: {node: '>= 0.4.0'}
+  /cors/2.8.5:
+    resolution: {integrity: sha512-KIHbLJqu73RGr/hnbrO9uBeixNGuvSQjul/jdFvS/KFSIH1hWVd1ng7zOHx+YrEfInLG7q4n6GHQ9cDtxv/P6g==}
+    engines: {node: '>= 0.10'}
+    dependencies:
+      object-assign: 4.1.1
+      vary: 1.1.2
     dev: false
 
   /cosmiconfig/7.0.0:
@@ -1832,6 +1835,11 @@ packages:
     resolution: {integrity: sha512-6eZs5Ls3WtCisHWp9S2GUy8dqkpGi4BVSz3GaqiE6ezub0512ESztXUwUB6C6IKbQkY2Pnb/mD4WYojCRwcwLA==}
     engines: {node: '>=0.10.0'}
     dev: true
+
+  /object-assign/4.1.1:
+    resolution: {integrity: sha1-IQmtx5ZYh8/AXLvUQsrIv7s2CGM=}
+    engines: {node: '>=0.10.0'}
+    dev: false
 
   /object-inspect/1.10.3:
     resolution: {integrity: sha512-e5mCJlSH7poANfC8z8S9s9S2IN5/4Zb3aZ33f5s8YqoazCFzNLloLU8r5VCG+G7WoqLvAAZoVMcy3tp/3X0Plw==}
