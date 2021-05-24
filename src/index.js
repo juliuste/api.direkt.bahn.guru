@@ -16,6 +16,7 @@ const api = express()
 const server = http.createServer(api)
 
 // enable caching
+// todo: use a global cache (redis?) here
 cache.options({ appendKey: () => 'v3' })
 api.use(cache.middleware('24 hours'))
 
