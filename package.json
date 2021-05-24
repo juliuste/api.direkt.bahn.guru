@@ -1,41 +1,40 @@
 {
-	"name": "direkt.bahn.guru-rest",
+	"name": "api.direkt.bahn.guru",
 	"version": "0.0.0",
 	"private": true,
-	"homepage": "https://github.com/juliuste/direkt.bahn.guru-rest",
-	"bugs": "https://github.com/juliuste/direkt.bahn.guru-rest/issues",
-	"repository": "juliuste/direkt.bahn.guru-rest",
+	"homepage": "https://github.com/juliuste/api.direkt.bahn.guru",
+	"bugs": "https://github.com/juliuste/api.direkt.bahn.guru/issues",
+	"repository": "juliuste/api.direkt.bahn.guru",
 	"license": "ISC",
 	"author": "Julius Tens <mail@juliustens.eu>",
 	"scripts": {
 		"check-deps": "depcheck",
-		"fix": "eslint --fix lib",
+		"fix": "npm run lint -- --fix",
 		"lint": "eslint lib",
 		"start": "node lib/index",
 		"test": "npm run lint && npm run check-deps"
 	},
 	"dependencies": {
-		"apicache": "^1.5.2",
-		"boolean": "^3.0.0",
+		"apicache": "^1.6.2",
+		"boolean": "^3.0.4",
 		"compression": "^1.7.4",
 		"corser": "^2.0.1",
-		"db-hafas": "^4.0.0",
+		"db-hafas": "^4.0.1",
 		"express": "^4.17.1",
 		"is-uic-location-code": "0.0.1",
-		"lodash": "^4.17.15",
-		"moment-timezone": "^0.5.27",
-		"p-queue": "^6.2.1"
+		"lodash": "^4.17.21",
+		"moment-timezone": "^0.5.33",
+		"p-queue": "^6.6.2"
 	},
 	"devDependencies": {
-		"depcheck": "^0.9.1",
-		"eslint": "^6.6.0",
-		"eslint-config-standard": "^14.1.0",
-		"eslint-plugin-import": "^2.18.2",
-		"eslint-plugin-node": "^10.0.0",
-		"eslint-plugin-promise": "^4.2.1",
-		"eslint-plugin-standard": "^4.0.1"
+		"depcheck": "^1.4.1",
+		"eslint": "^7.27.0",
+		"eslint-config-standard": "^16.0.3",
+		"eslint-plugin-import": "^2.23.3",
+		"eslint-plugin-node": "^11.1.0",
+		"eslint-plugin-promise": "^5.1.0"
 	},
 	"engines": {
-		"node": ">=10"
+		"node": ">=14"
 	}
 }

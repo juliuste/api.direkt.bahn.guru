@@ -1,11 +1,9 @@
-# direkt.bahn.guru-rest
+# api.direkt.bahn.guru
 
 Backend for [direkt.bahn.guru](https://github.com/juliuste/direkt.bahn.guru/).
 
-[![Build Status](https://travis-ci.org/juliuste/direkt.bahn.guru-rest.svg?branch=master)](https://travis-ci.org/juliuste/direkt.bahn.guru-rest)
-[![dependency status](https://img.shields.io/david/juliuste/direkt.bahn.guru-rest.svg)](https://david-dm.org/juliuste/direkt.bahn.guru-rest)
-[![license](https://img.shields.io/github/license/juliuste/direkt.bahn.guru-rest.svg?style=flat)](license)
-[![chat on gitter](https://badges.gitter.im/juliuste.svg)](https://gitter.im/juliuste)
+[![License](https://img.shields.io/github/license/juliuste/api.direkt.bahn.guru.svg?style=flat)](license)
+[![Contact me](https://img.shields.io/badge/contact-email-turquoise)](mailto:mail@juliustens.eu)
 
 ## See also
 
@@ -15,4 +13,4 @@ Backend for [direkt.bahn.guru](https://github.com/juliuste/direkt.bahn.guru/).
 
 ## Contributing
 
-If you found a bug or want to propose a feature, feel free to visit [the issues page](https://github.com/juliuste/direkt.bahn.guru-rest/issues).
+If you found a bug or want to propose a feature, feel free to visit [the issues page](https://github.com/juliuste/api.direkt.bahn.guru/issues).
