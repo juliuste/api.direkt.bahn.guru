@@ -1,11 +1,13 @@
 'use strict'
 
-const Queue = require('p-queue').default
-const isLocationCode = require('is-uic-location-code')
-const hafas = require('db-hafas')('direkt.bahn.guru')
-const moment = require('moment-timezone')
-const { boolean } = require('boolean')
-const l = require('lodash')
+import Queue from 'p-queue'
+import isLocationCode from 'is-uic-location-code'
+import createHafas from 'db-hafas'
+import moment from 'moment-timezone'
+import { boolean } from 'boolean'
+import l from 'lodash'
+
+const hafas = createHafas('direkt.bahn.guru')
 
 const err = (msg, code) => {
 	const e = new Error(msg)
@@ -58,7 +60,7 @@ const reachableForDay = async (date, stationId, allowLocalTrains) => {
 	return reachable
 }
 
-module.exports = async (req, res, next) => {
+export default async (req, res, next) => {
 	const id = req.params.id
 	if (!id || !isLocationCode(id)) return next(err('id must be a uic station code', 400))
 	const allowLocalTrains = boolean(req.query.allowLocalTrains)

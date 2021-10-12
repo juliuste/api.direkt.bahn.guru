@@ -1,13 +1,13 @@
 'use strict'
 
-const express = require('express')
-const http = require('http')
-const cors = require('cors')
-const compression = require('compression')
-const cache = require('apicache')
-const robots = require('express-robots-txt')
+import express from 'express'
+import http from 'http'
+import cors from 'cors'
+import compression from 'compression'
+import cache from 'apicache'
+import robots from 'express-robots-txt'
 
-const reachableFrom = require('./reachableFrom')
+import reachableFrom from './reachableFrom.js'
 
 const port = process.env.PORT
 if (!port) throw new Error('please provide a PORT environment variable')

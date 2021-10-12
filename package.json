@@ -7,11 +7,12 @@
 	"repository": "juliuste/api.direkt.bahn.guru",
 	"license": "ISC",
 	"author": "Julius Tens <mail@juliustens.eu>",
+	"type": "module",
 	"scripts": {
 		"check-deps": "depcheck",
 		"fix": "npm run lint -- --fix",
 		"lint": "eslint src",
-		"start": "node src/index",
+		"start": "node src/index.js",
 		"test": "npm run lint && npm run check-deps"
 	},
 	"dependencies": {
