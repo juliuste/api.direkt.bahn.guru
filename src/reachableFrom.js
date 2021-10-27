@@ -9,12 +9,6 @@ import l from 'lodash'
 
 const hafas = createHafas('direkt.bahn.guru')
 
-const err = (msg, code) => {
-	const e = new Error(msg)
-	e.statusCode = code
-	return e
-}
-
 const isTrainDeparture = departure =>
 	l.get(departure, 'line.mode') === 'train' && (departure.line.name || '').slice(0, 3).toLowerCase() !== 'bus'
 
@@ -62,7 +56,7 @@ const reachableForDay = async (date, stationId, allowLocalTrains) => {
 
 export default async (req, res, next) => {
 	const id = req.params.id
-	if (!id || !isLocationCode(id)) return next(err('id must be a uic station code', 400))
+	if (!id || !isLocationCode(id)) return res.status(400).json({ error: true, message: 'id must be a uic station code' })
 	const allowLocalTrains = boolean(req.query.allowLocalTrains)
 
 	try {
@@ -77,6 +71,6 @@ export default async (req, res, next) => {
 		res.json(uniqResults)
 	} catch (e) {
 		console.error(e)
-		res.status(500).json({ error: true })
+		return res.status(500).json({ error: true, message: 'internal error' })
 	}
 }
