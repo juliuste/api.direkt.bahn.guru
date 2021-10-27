@@ -16,7 +16,7 @@ const isTrainDeparture = departure =>
 // several weeks. we filter these out using some practical upper limit
 const maximumDurationInHours = 210 // see also: https://en.wikipedia.org/wiki/Longest_train_services#Top_50_train_services,_by_distance
 
-const reachableForDay = async (date, stationId, allowLocalTrains) => {
+const reachableForDay = async (date, stationId, allowLocalTrains, allowSuburbanTrains) => {
 	const departures = await hafas.departures(stationId, {
 		when: date,
 		duration: 24 * 60, // 24h
@@ -25,7 +25,7 @@ const reachableForDay = async (date, stationId, allowLocalTrains) => {
 			national: true,
 			regionalExp: allowLocalTrains,
 			regional: allowLocalTrains,
-			suburban: false,
+			suburban: allowSuburbanTrains,
 			bus: false,
 			ferry: false,
 			subway: false,
@@ -58,6 +58,7 @@ export default async (req, res, next) => {
 	const id = req.params.id
 	if (!id || !isLocationCode(id)) return res.status(400).json({ error: true, message: 'id must be a uic station code' })
 	const allowLocalTrains = boolean(req.query.allowLocalTrains)
+	const allowSuburbanTrains = boolean(req.query.allowSuburbanTrains)
 
 	try {
 		const baseDate = moment.tz('Europe/Berlin').add(7, 'days').startOf('day')
@@ -65,7 +66,7 @@ export default async (req, res, next) => {
 		const dates = daysToAdd.map(a => moment(baseDate).add(a, 'days').toDate())
 
 		const queue = new Queue({ concurrency: 4 })
-		const results = await queue.addAll(dates.map(d => () => reachableForDay(d, id, allowLocalTrains)))
+		const results = await queue.addAll(dates.map(d => () => reachableForDay(d, id, allowLocalTrains, allowSuburbanTrains)))
 		const mergedResults = l.union(...results)
 		const uniqResults = l.uniqBy(l.sortBy(mergedResults, x => x.duration), x => x.id)
 		res.json(uniqResults)
