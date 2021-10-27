@@ -77,6 +77,6 @@ export default async (req, res, next) => {
 		res.json(uniqResults)
 	} catch (e) {
 		console.error(e)
-		next(err('Something went wrong', 500))
+		res.status(500).json({ error: true })
 	}
 }

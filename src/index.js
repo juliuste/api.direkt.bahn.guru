@@ -4,7 +4,8 @@ import express from 'express'
 import http from 'http'
 import cors from 'cors'
 import compression from 'compression'
-import cache from 'apicache'
+import apicache from 'apicache'
+import redis from 'redis'
 import robots from 'express-robots-txt'
 
 import reachableFrom from './reachableFrom.js'
@@ -16,21 +17,22 @@ const api = express()
 const server = http.createServer(api)
 api.use(cors())
 
-// enable caching
-// todo: use a global cache (redis?) here
-cache.options({ appendKey: () => 'v3' })
-api.use(cache.middleware('24 hours'))
-
 api.use(compression())
 api.use(robots({ UserAgent: '*', Disallow: '/' }))
 
-api.get('/:id', reachableFrom)
+api.get('/health', (req, res) => res.end())
 
-api.use((err, req, res, next) => {
-	if (res.headersSent) return next()
-	res.status(err.statusCode || 500).json({ error: true, msg: err.message })
-	next()
-})
+// enable caching
+// todo: use a global cache (redis?) here
+const cache = apicache.options({
+	appendKey: () => 'v4',
+	redisClient: process.env.REDIS_URI ? redis.createClient(process.env.REDIS_URI) : undefined,
+	statusCodes: {
+		include: [200],
+	},
+}).middleware
+
+api.get('/:id', cache('24 hours'), reachableFrom)
 
 server.listen(port, error => {
 	if (error) {
