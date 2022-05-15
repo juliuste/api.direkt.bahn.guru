@@ -17,25 +17,25 @@
 	},
 	"dependencies": {
 		"apicache": "^1.6.3",
-		"boolean": "^3.1.4",
+		"boolean": "^3.2.0",
 		"compression": "^1.7.4",
 		"cors": "^2.8.5",
 		"db-hafas": "^4.0.1",
-		"express": "^4.17.1",
+		"express": "^4.18.1",
 		"express-robots-txt": "^1.0.0",
 		"is-uic-location-code": "0.0.1",
 		"lodash": "^4.17.21",
-		"moment-timezone": "^0.5.33",
-		"p-queue": "^7.1.0",
+		"moment-timezone": "^0.5.34",
+		"p-queue": "^7.2.0",
 		"redis": "^3.1.2"
 	},
 	"devDependencies": {
-		"depcheck": "^1.4.2",
-		"eslint": "^7.32.0",
-		"eslint-config-standard": "^16.0.3",
-		"eslint-plugin-import": "^2.25.2",
-		"eslint-plugin-node": "^11.1.0",
-		"eslint-plugin-promise": "^5.1.1"
+		"depcheck": "^1.4.3",
+		"eslint": "^8.15.0",
+		"eslint-config-standard": "^17.0.0",
+		"eslint-plugin-import": "^2.26.0",
+		"eslint-plugin-n": "^15.2.0",
+		"eslint-plugin-promise": "^6.0.0"
 	},
 	"engines": {
 		"node": ">=14"
