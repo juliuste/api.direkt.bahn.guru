@@ -1,5 +1,5 @@
 # install dependencies
-FROM node:fermium-alpine
+FROM node:gallium-alpine
 RUN npm i -g pnpm
 
 WORKDIR /app-src
