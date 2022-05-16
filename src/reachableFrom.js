@@ -70,8 +70,8 @@ export default async (req, res, next) => {
 		const mergedResults = l.union(...results)
 		const uniqResults = l.uniqBy(l.sortBy(mergedResults, x => x.duration), x => x.id)
 		res.json(uniqResults)
-	} catch (e) {
-		console.error(e)
+	} catch (error) {
+		console.error(error)
 		return res.status(500).json({ error: true, message: 'internal error' })
 	}
 }

@@ -8,6 +8,7 @@ COPY package.json pnpm-lock.yaml ./
 RUN pnpm install
 
 COPY src ./src
+RUN pnpm run build-stations
 
 USER node
 

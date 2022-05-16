@@ -9,6 +9,7 @@ import redis from 'redis'
 import robots from 'express-robots-txt'
 
 import reachableFrom from './reachableFrom.js'
+import { stationsByQuery, stationById } from './stations.js'
 
 const port = process.env.PORT
 if (!port) throw new Error('please provide a PORT environment variable')
@@ -32,7 +33,9 @@ const cache = apicache.options({
 	},
 }).middleware
 
-api.get('/:id', cache('24 hours'), reachableFrom)
+api.get('/stations', cache('24 hours'), stationsByQuery)
+api.get('/stations/:id', cache('24 hours'), stationById)
+api.get('/:id', cache('24 hours'), reachableFrom) // todo: prefix this path, since requests would fail if any id started with /stations
 
 server.listen(port, error => {
 	if (error) {

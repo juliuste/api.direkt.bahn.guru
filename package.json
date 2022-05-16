@@ -9,6 +9,7 @@
 	"author": "Julius Tens <mail@juliustens.eu>",
 	"type": "module",
 	"scripts": {
+		"build-stations": "node src/build-stations.js > src/stations.json",
 		"check-deps": "depcheck",
 		"fix": "npm run lint -- --fix",
 		"lint": "eslint src",
@@ -20,16 +21,21 @@
 		"boolean": "^3.2.0",
 		"compression": "^1.7.4",
 		"cors": "^2.8.5",
+		"db-clean-station-name": "^1.2.0",
 		"db-hafas": "^4.0.1",
 		"express": "^4.18.1",
 		"express-robots-txt": "^1.0.0",
 		"is-uic-location-code": "0.0.1",
 		"lodash": "^4.17.21",
 		"moment-timezone": "^0.5.34",
+		"node-fetch": "^3.2.4",
 		"p-queue": "^7.2.0",
-		"redis": "^3.1.2"
+		"redis": "^3.1.2",
+		"trainline-stations": "^2.0.1",
+		"uic-codes": "^0.3.0"
 	},
 	"devDependencies": {
+		"countries-list": "^2.6.1",
 		"depcheck": "^1.4.3",
 		"eslint": "^8.15.0",
 		"eslint-config-standard": "^17.0.0",
