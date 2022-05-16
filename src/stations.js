@@ -1,6 +1,7 @@
 import cleanStationName from 'db-clean-station-name'
 import fs from 'fs'
 import isUicLocationCode from 'is-uic-location-code'
+import countries from 'i18n-iso-countries'
 import fetch from 'node-fetch'
 import { dirname, resolve } from 'path'
 import uicCodes from 'uic-codes'
@@ -34,7 +35,7 @@ const countryForStationId = id => {
 	if (!isUicLocationCode(id)) return undefined
 	const countryPrefix = +id.slice(0, 2)
 	const alpha3 = uicCodes.toISO[countryPrefix]
-	return alpha3 || undefined
+	return alpha3 ? countries.alpha3ToAlpha2(alpha3) : undefined
 }
 
 const stationHasLocation = station => {
