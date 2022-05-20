@@ -30,6 +30,12 @@ export const buildCalendarUrl = (originId, destinationId) => {
 const isTrainDeparture = departure =>
 	l.get(departure, 'line.mode') === 'train' && (departure.line.name || '').slice(0, 3).toLowerCase() !== 'bus'
 
+const dbUrlFilterForProduct = product => {
+	if (product === 'nationalExpress' || product === 'nationalExp') return 1
+	if (product === 'national') return 2
+	return 31
+}
+
 // todo: the data source seems to include some broken trains, which run for
 // several weeks. we filter these out using some practical upper limit
 const maximumDurationInHours = 210 // see also: https://en.wikipedia.org/wiki/Longest_train_services#Top_50_train_services,_by_distance
@@ -62,9 +68,10 @@ const reachableForDay = async (date, stationId, allowLocalTrains, allowSuburbanT
 			let duration = (+new Date(s.arrival) - (+new Date(when))) / (1000 * 60)
 			if (duration <= 0 || (duration / 60) > maximumDurationInHours) duration = null
 
-			const line = departure.line.name.replace(/\s+\d+$/i, ` ${departure.line.fahrtNr}`) // todo
+			const productFilter = dbUrlFilterForProduct(departure.line.product)
 			const day = moment(departure.when).tz('Europe/Berlin').format('DD.MM.YY') // todo: this might be wrong, since the first stop of the train might be on the previous day
-			const dbUrl = `https://reiseauskunft.bahn.de/bin/trainsearch.exe/dn?protocol=https:&rt=1&trainname=${encodeURIComponent(line)}&date=${day}&stationname=${departure.stop.id}` // todo: ?stationname
+			const dbUrlGerman = `https://reiseauskunft.bahn.de/bin/trainsearch.exe/dn?protocol=https:&rt=1&requestMode=MZP&productClassFilter=${productFilter}&trainname=${departure.line.fahrtNr}&date=${day}&stationname=${departure.stop.id}`
+			const dbUrlEnglish = `https://reiseauskunft.bahn.de/bin/trainsearch.exe/en?protocol=https:&rt=1&requestMode=MZP&productClassFilter=${productFilter}&trainname=${departure.line.fahrtNr}&date=${day}&stationname=${departure.stop.id}`
 
 			const calendarUrl = buildCalendarUrl(stationId, s.stop.id)
 
@@ -73,7 +80,8 @@ const reachableForDay = async (date, stationId, allowLocalTrains, allowSuburbanT
 				name: s.stop.name,
 				location: s.stop.location,
 				duration,
-				dbUrl,
+				dbUrlGerman,
+				dbUrlEnglish,
 				calendarUrl,
 			}
 		})

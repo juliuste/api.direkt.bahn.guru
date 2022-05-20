@@ -26,7 +26,7 @@ api.get('/health', (req, res) => res.end())
 // enable caching
 // todo: use a global cache (redis?) here
 const cache = apicache.options({
-	appendKey: () => 'v5',
+	appendKey: () => 'v6',
 	redisClient: process.env.REDIS_URI ? redis.createClient(process.env.REDIS_URI) : undefined,
 	statusCodes: {
 		include: [200],
