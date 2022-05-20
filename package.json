@@ -31,6 +31,7 @@
 		"moment-timezone": "^0.5.34",
 		"node-fetch": "^3.2.4",
 		"p-queue": "^7.2.0",
+		"query-string": "^7.1.1",
 		"redis": "^3.1.2",
 		"trainline-stations": "^2.0.1",
 		"uic-codes": "^0.3.0"

@@ -6,8 +6,26 @@ import createHafas from 'db-hafas'
 import moment from 'moment-timezone'
 import { boolean } from 'boolean'
 import l from 'lodash'
+import { stringify } from 'query-string'
+import { formatHafasStationId } from './stations.js'
 
 const hafas = createHafas('direkt.bahn.guru')
+
+export const buildCalendarUrl = (originId, destinationId) => {
+	const query = {
+		origin: formatHafasStationId(originId),
+		destination: formatHafasStationId(destinationId),
+		submit: 'Suchen',
+		class: 2,
+		bc: 0,
+		departureAfter: null,
+		arrivalBefore: null,
+		duration: null,
+		maxChanges: 0,
+		weeks: 4,
+	}
+	return `https://bahn.guru/calendar?${stringify(query)}`
+}
 
 const isTrainDeparture = departure =>
 	l.get(departure, 'line.mode') === 'train' && (departure.line.name || '').slice(0, 3).toLowerCase() !== 'bus'
@@ -43,11 +61,20 @@ const reachableForDay = async (date, stationId, allowLocalTrains, allowSuburbanT
 		return passedStopovers.map(s => {
 			let duration = (+new Date(s.arrival) - (+new Date(when))) / (1000 * 60)
 			if (duration <= 0 || (duration / 60) > maximumDurationInHours) duration = null
+
+			const line = departure.line.name.replace(/\s+\d+$/i, ` ${departure.line.fahrtNr}`) // todo
+			const day = moment(departure.when).tz('Europe/Berlin').format('DD.MM.YY') // todo: this might be wrong, since the first stop of the train might be on the previous day
+			const dbUrl = `https://reiseauskunft.bahn.de/bin/trainsearch.exe/dn?protocol=https:&rt=1&trainname=${encodeURIComponent(line)}&date=${day}&stationname=${departure.stop.id}` // todo: ?stationname
+
+			const calendarUrl = buildCalendarUrl(stationId, s.stop.id)
+
 			return {
 				id: s.stop.id,
 				name: s.stop.name,
 				location: s.stop.location,
 				duration,
+				dbUrl,
+				calendarUrl,
 			}
 		})
 	}).filter(x => l.isNumber(x.duration))

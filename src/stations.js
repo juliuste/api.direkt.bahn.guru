@@ -16,7 +16,7 @@ const fetchStations = async query => {
 	]).then(res => res.json())
 }
 
-const formatHafasStationId = i => (i.length === 9 && i.slice(0, 2)) ? i.slice(2) : i
+export const formatHafasStationId = i => (i.length === 9 && i.slice(0, 2)) ? i.slice(2) : i
 
 const hafasStationIsLongDistanceOrRegionalOrSuburban = s => {
 	return s.products && (s.products.nationalExp || s.products.nationalExpress || s.products.national || s.products.regionalExp || s.products.regionalExpress || s.products.regional || s.products.suburban) && isUicLocationCode(formatHafasStationId(s.id))

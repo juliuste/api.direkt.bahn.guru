@@ -22,6 +22,7 @@ specifiers:
   moment-timezone: ^0.5.34
   node-fetch: ^3.2.4
   p-queue: ^7.2.0
+  query-string: ^7.1.1
   redis: ^3.1.2
   trainline-stations: ^2.0.1
   uic-codes: ^0.3.0
@@ -41,6 +42,7 @@ dependencies:
   moment-timezone: 0.5.34
   node-fetch: 3.2.4
   p-queue: 7.2.0
+  query-string: 7.1.1
   redis: 3.1.2
   trainline-stations: 2.0.1
   uic-codes: 0.3.0
@@ -867,6 +869,11 @@ packages:
     engines: {node: '>=0.10.0'}
     dev: false
 
+  /decode-uri-component/0.2.0:
+    resolution: {integrity: sha1-6zkTMzRYd1y4TNGh+uBiEGu4dUU=}
+    engines: {node: '>=0.10'}
+    dev: false
+
   /decompress-response/6.0.0:
     resolution: {integrity: sha512-aW35yZM6Bb/4oJlZncMH2LCoZtJXTRxES17vE3hoRiowU2kWHaJKFkSBDnDR+cm9J+9QhXmREyIfv0pji9ejCQ==}
     engines: {node: '>=10'}
@@ -1385,6 +1392,11 @@ packages:
     dependencies:
       to-regex-range: 5.0.1
     dev: true
+
+  /filter-obj/1.1.0:
+    resolution: {integrity: sha1-mzERErxsYSehbgFsbF1/GeCAXFs=}
+    engines: {node: '>=0.10.0'}
+    dev: false
 
   /finalhandler/1.2.0:
     resolution: {integrity: sha512-5uXcUVftlQMFnWC9qu/svkWv3GTd2PfUhK/3PLkYNAe7FbqJMt3515HaxE6eRL74GdsriiwujiawdaB1BpEISg==}
@@ -2479,6 +2491,16 @@ packages:
       lodash: 4.17.21
     dev: true
 
+  /query-string/7.1.1:
+    resolution: {integrity: sha512-MplouLRDHBZSG9z7fpuAAcI7aAYjDLhtsiVZsevsfaHWDS2IDdORKbSd1kWUA+V4zyva/HZoSfpwnYMMQDhb0w==}
+    engines: {node: '>=6'}
+    dependencies:
+      decode-uri-component: 0.2.0
+      filter-obj: 1.1.0
+      split-on-first: 1.1.0
+      strict-uri-encode: 2.0.0
+    dev: false
+
   /quick-lru/4.0.1:
     resolution: {integrity: sha512-ARhCpm70fzdcvNQfPoy49IaanKkTlRWF2JMzqhcJbhSFRZv7nPTvZJdcY7301IPmvW+/p0RgIWnQDLJxifsQ7g==}
     engines: {node: '>=8'}
@@ -2804,6 +2826,11 @@ packages:
     resolution: {integrity: sha512-Ctl2BrFiM0X3MANYgj3CkygxhRmr9mi6xhejbdO960nF6EDJApTYpn0BQnDKlnNBULKiCN1n3w9EBkHK8ZWg+g==}
     dev: false
 
+  /split-on-first/1.1.0:
+    resolution: {integrity: sha512-43ZssAJaMusuKWL8sKUBQXHWOpq8d6CfN/u1p4gUzfJkM05C8rxTmYrkIPTXapZpORA6LkkzcUulJ8FqA7Uudw==}
+    engines: {node: '>=6'}
+    dev: false
+
   /sprintf-js/1.0.3:
     resolution: {integrity: sha1-BOaSb2YolTVPPdAVIDYzuFcpfiw=}
     dev: true
@@ -2811,6 +2838,11 @@ packages:
   /statuses/2.0.1:
     resolution: {integrity: sha512-RwNA9Z/7PrK06rYLIzFMlaF+l73iwpzsqRIFgbMLbTcLD6cOao82TaWefPXQvB2fOC4AjuYSEndS7N/mTCbkdQ==}
     engines: {node: '>= 0.8'}
+    dev: false
+
+  /strict-uri-encode/2.0.0:
+    resolution: {integrity: sha1-ucczDHBChi9rFC3CdLvMWGbONUY=}
+    engines: {node: '>=4'}
     dev: false
 
   /string-width/4.2.3:
