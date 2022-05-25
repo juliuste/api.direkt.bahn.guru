@@ -62,6 +62,15 @@ const reachableForDay = async (date, stationId, localTrainsOnly) => {
 
 	const trainDepartures = departures.filter(isTrainDeparture)
 	const reachable = l.flatMap(trainDepartures, departure => {
+		// todo: make this less brittle
+		if (localTrainsOnly) {
+			// since some privately operated trains are wrongly categorized as
+			// regional transit, we filter them out manually. this list is
+			// probably incomplete.
+			if (departure.line.operator?.name === 'FlixTrain') return []
+			if (departure.line.operator?.name === 'Snälltåget') return []
+		}
+
 		const { when, nextStopovers = [] } = departure
 		const passedStopovers = l.takeRightWhile(nextStopovers || [], x => ![stationId, undefined, null].includes(l.get(x, 'stop.id')))
 		return passedStopovers.map(s => {
