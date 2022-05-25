@@ -69,6 +69,7 @@ const reachableForDay = async (date, stationId, localTrainsOnly) => {
 			// probably incomplete.
 			if (departure.line.operator?.name === 'FlixTrain') return []
 			if (departure.line.operator?.name === 'Snälltåget') return []
+			if (departure.line.operator?.name === 'Urlaubs-Express') return []
 		}
 
 		const { when, nextStopovers = [] } = departure
