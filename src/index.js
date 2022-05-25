@@ -37,6 +37,8 @@ api.get('/stations', cache('24 hours'), stationsByQuery)
 api.get('/stations/:id', cache('24 hours'), stationById)
 api.get('/:id', cache('24 hours'), reachableFrom) // todo: prefix this path, since requests would fail if any id started with /stations
 
+api.disable('x-powered-by')
+
 server.listen(port, error => {
 	if (error) {
 		console.error(error)
