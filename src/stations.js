@@ -11,7 +11,7 @@ const stationsMap = new Map(Object.entries(JSON.parse(fs.readFileSync(resolve(di
 
 const fetchStations = async query => {
 	const urlA = new URL('https://v5.db.transport.rest/locations?poi=false&addresses=false')
-	const urlB = new URL('https://v5.db.juliustens.eu/locations?poi=false&addresses=false')
+	const urlB = new URL('https://v5.db.api.bahn.guru/locations?poi=false&addresses=false')
 	urlA.searchParams.append('query', query)
 	urlB.searchParams.append('query', query)
 
