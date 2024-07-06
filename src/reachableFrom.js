@@ -64,12 +64,17 @@ const reachableForDay = async (date, stationId, localTrainsOnly) => {
 	const reachable = l.flatMap(trainDepartures, departure => {
 		// todo: make this less brittle
 		if (localTrainsOnly) {
+			// EuroNight (EN) services are sometimes misclassified as regional trains
+			// so we filter them out manually.
+			if (departure.line.name.startsWith('EN')) return []
 			// since some privately operated trains are wrongly categorized as
 			// regional transit, we filter them out manually. this list is
 			// probably incomplete.
+			if (departure.line.operator?.name === 'European Sleeper') return []
 			if (departure.line.operator?.name === 'FlixTrain') return []
 			if (departure.line.operator?.name === 'Snälltåget') return []
 			if (departure.line.operator?.name === 'Urlaubs-Express') return []
+			if (departure.line.operator?.name === 'WESTbahn') return []
 		}
 
 		const { when, nextStopovers = [] } = departure
