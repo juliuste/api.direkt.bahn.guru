@@ -19,7 +19,7 @@
 	"dependencies": {
 		"apicache": "^1.6.3",
 		"boolean": "^3.2.0",
-		"compression": "^1.7.4",
+		"compression": "^1.8.1",
 		"cors": "^2.8.5",
 		"db-clean-station-name": "^1.2.0",
 		"db-hafas": "^4.0.1",
